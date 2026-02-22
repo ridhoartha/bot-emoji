@@ -2,6 +2,7 @@ const { Telegraf } = require('telegraf');
 const axios = require('axios');
 
 // Token diambil dari Environment Variable di Render agar aman
+// Jika dijalankan lokal tanpa env, akan menggunakan token default di bawah
 const BOT_TOKEN = process.env.BOT_TOKEN || '8346678690:AAH8NYRyZ723rj56GLuIMhtxBh-YFOrDags';
 const bot = new Telegraf(BOT_TOKEN);
 
@@ -83,6 +84,6 @@ bot.launch().then(() => {
     console.log('Bot is running on Render...');
 });
 
-// Penanganan penghentian bot
+// Penanganan penghentian bot agar aman
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
